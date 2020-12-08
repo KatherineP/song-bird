@@ -1,0 +1,13 @@
+.rhap_container {
+  box-shadow: none !important;
+  background-color: aliceblue !important;
+
+}
+
+.rhap_controls-section {
+  flex: 0 !important;
+}
+
+.rhap_button-clear, .rhap_main-controls-button, .rhap_play-pause-button {
+  color: green !important;
+}
