@@ -15,7 +15,7 @@ const Details = ({ birdInfo } ) => {
   const { name, species, description, image, audio} = birdInfo;
   return (
       <div className="jumbotron bird-details">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between flex-wrap">
           <img className ="bird-image" src={image} alt="unknown bird"/>
           <div className="flex-grow-1">
             <h4>{name}</h4>

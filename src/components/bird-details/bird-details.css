@@ -1,6 +1,7 @@
 .jumbotron {
   padding: 2rem 2rem;
   margin: 2rem auto;
+  flex-wrap: wrap;
 }
 
 .bird-details {
