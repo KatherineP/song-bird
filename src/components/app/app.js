@@ -10,6 +10,18 @@ import FinalPopUp from '../final-popup'
 
 const App = () => {
   const randomNum = Math.floor(Math.random() * 6) + 1
+  // const [ gameConfig, setGameConfig ] = useState({
+  //   gameLevel: 0,
+  //   nextLevel: false,
+  //   birdCategory: 0,
+  //   selectedBird: {},
+  //   randomBird: {},
+  //   correctAnswer: false,
+  //   totalScore: 0, 
+  //   scorePerRound: 5,
+  //   correctBirdId: null,
+  //   inCorrectBirdId: []
+  // })
 
   const [ gameLevel, setGameLevel ] = useState(0)
   const [ nextLevel, setNextLevel ] = useState(false)
@@ -19,15 +31,15 @@ const App = () => {
   const [ correctAnswer, setCorrectAnswer ] = useState(false)
   const [ totalScore, setTotalScore ] = useState(0)
   const [ scorePerRound, setScorePerRound ] = useState(5)
-  const [ correctBirdId, setCorrectBirdId ] = useState([])
+  const [ correctBirdId, setCorrectBirdId ] = useState()
   const [ inCorrectBirdId, setInCorrectBirdId ] = useState([])
   
   const getDetailInfo = (id) => {
     const bird = birdsData[birdCategory].find((bird) => bird.id === id)
     if(bird.id === randomBird.id){
-      setCorrectBirdId([...correctBirdId, bird.id])
+      setCorrectBirdId(bird.id)
       setCorrectAnswer(prevCorrectAnswer => (!prevCorrectAnswer) ? !prevCorrectAnswer : prevCorrectAnswer)
-      setNextLevel(prevLevel => (!prevLevel) ? !prevLevel : prevLevel)
+      setNextLevel(true)
       setTotalScore(prevTotalScore => prevTotalScore + scorePerRound)
     } else {
       setInCorrectBirdId([...inCorrectBirdId, bird.id])
@@ -41,7 +53,7 @@ const App = () => {
       setBirdCategory(prevValue => prevValue + 1)
     } 
       setNextLevel(false)
-      setCorrectBirdId([])
+      setCorrectBirdId()
       setInCorrectBirdId([])
       setCorrectAnswer(false)
       setGameLevel(prevValue => prevValue + 1)
@@ -49,12 +61,10 @@ const App = () => {
       setScorePerRound(5)
   }
 
-
  useEffect(() =>{
    if(birdCategory < birdsData.length + 1){
     setRandomBird(birdsData[birdCategory].find((bird) => bird.id === randomNum))
-   } else return
- // eslint-disable-next-line react-hooks/exhaustive-deps
+   }
  }, [birdCategory])
 
  const onPlayAgain = () => {

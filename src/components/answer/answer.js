@@ -5,7 +5,7 @@ import './answer.css';
 const Answer = ({ onAnswer, bird, correctBirdId, inCorrectBirdId }) => {
   let classes = ['list-group-item']
 
-  if(correctBirdId.find(id => id === bird.id)){
+  if(correctBirdId === bird.id){
     classes.push('list-group-item-success')
   } else if(inCorrectBirdId.find(id => id === bird.id)) {
     classes.push('list-group-item-danger')
@@ -14,7 +14,7 @@ const Answer = ({ onAnswer, bird, correctBirdId, inCorrectBirdId }) => {
   return (
     <li className={classes.join(' ')}
       onClick={() => onAnswer(bird.id)}>
-      {bird.name} {(correctBirdId.find(id => id === bird.id)) && <SuccessAnimation/>}
+      {bird.name} {(correctBirdId === bird.id) && <SuccessAnimation/>}
     </li>
   )
 }

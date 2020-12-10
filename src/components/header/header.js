@@ -6,19 +6,11 @@ const Header = ({ gameLevel, totalScore }) => {
   'Хищные птицы', 'Морские птицы'];
 
   const menu = categories.map((category, idx) => {
-    if(idx === gameLevel){
-      return (
-        <li className="nav-item" key={category}>
-          <a className="nav-link active" href="/#">{category}</a>
-        </li>
-      )
-    } else {
-      return (
-        <li className="nav-item" key={category}>
-          <a className="nav-link" href="/#">{category}</a>
-        </li>
-      )
-    }
+    return (
+      <li className="nav-item" key={category}>
+        <a className={(idx === gameLevel) ? 'nav-link active' : 'nav-link'} href="/#">{category}</a>
+      </li>
+    )
   })
 
   return (
