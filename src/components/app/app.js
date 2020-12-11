@@ -10,18 +10,6 @@ import FinalPopUp from '../final-popup'
 
 const App = () => {
   const randomNum = Math.floor(Math.random() * 6) + 1
-  // const [ gameConfig, setGameConfig ] = useState({
-  //   gameLevel: 0,
-  //   nextLevel: false,
-  //   birdCategory: 0,
-  //   selectedBird: {},
-  //   randomBird: {},
-  //   correctAnswer: false,
-  //   totalScore: 0, 
-  //   scorePerRound: 5,
-  //   correctBirdId: null,
-  //   inCorrectBirdId: []
-  // })
 
   const [ gameLevel, setGameLevel ] = useState(0)
   const [ nextLevel, setNextLevel ] = useState(false)
@@ -86,7 +74,7 @@ const App = () => {
 
     <div className="row mb2">
       <div className="col-md-6">
-        <AnswersList onAnswer={getDetailInfo} birdCategory={birdCategory}
+        <AnswersList onAnswer={getDetailInfo} birdCategory={birdsData[birdCategory]}
         correctBirdId={correctBirdId} inCorrectBirdId={inCorrectBirdId}/>
       </div>
       <div className="col-md-6">
