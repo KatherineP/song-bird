@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import './app.css'
 import Header from '../header'
 import Question from '../question'
@@ -7,68 +7,56 @@ import Details from '../bird-details'
 import Play from '../play-button'
 import birdsData from '../../config'
 import FinalPopUp from '../final-popup'
+import reducer from '../../reducer'
 
 const App = () => {
   const randomNum = Math.floor(Math.random() * 6) + 1
+  const [ birdCategory, setBirdCategory ] = useState(0);
 
-  const [ gameLevel, setGameLevel ] = useState(0)
-  const [ nextLevel, setNextLevel ] = useState(false)
-  const [ birdCategory, setBirdCategory ] = useState(0)
-  const [ selectedBird, setBird ] = useState({})
-  const [ randomBird, setRandomBird ] = useState(birdsData[birdCategory].find((bird) => bird.id === randomNum))
-  const [ correctAnswer, setCorrectAnswer ] = useState(false)
-  const [ totalScore, setTotalScore ] = useState(0)
-  const [ scorePerRound, setScorePerRound ] = useState(5)
-  const [ correctBirdId, setCorrectBirdId ] = useState()
-  const [ inCorrectBirdId, setInCorrectBirdId ] = useState([])
-  
-  const getDetailInfo = (id) => {
-    const bird = birdsData[birdCategory].find((bird) => bird.id === id)
-    if(bird.id === randomBird.id){
-      setCorrectBirdId(bird.id)
-      setCorrectAnswer(prevCorrectAnswer => (!prevCorrectAnswer) ? !prevCorrectAnswer : prevCorrectAnswer)
-      setNextLevel(true)
-      setTotalScore(prevTotalScore => prevTotalScore + scorePerRound)
-    } else {
-      setInCorrectBirdId([...inCorrectBirdId, bird.id])
-      setScorePerRound(prevScorePerRound => prevScorePerRound - 1)
-    }
-    setBird(bird);
-  }
+  const[state, dispatch] = useReducer(reducer, {
+    gameLevel: 0,
+    nextLevel: false,
+    birdCategory,
+    selectedBird: {},
+    randomBird: birdsData[birdCategory].find((bird) => bird.id === randomNum),
+    correctAnswer: false,
+    totalScore: 0,
+    scorePerRound: 5,
+    correctBirdId: null,
+    inCorrectBirdId: [],
+    birdsData 
+  })
+  console.log(state)
 
-  const onNextLevel = () => {
-    if(birdCategory !== birdsData.length - 1) {
-      setBirdCategory(prevValue => prevValue + 1)
-    } 
-      setNextLevel(false)
-      setCorrectBirdId()
-      setInCorrectBirdId([])
-      setCorrectAnswer(false)
-      setGameLevel(prevValue => prevValue + 1)
-      setBird({})
-      setScorePerRound(5)
-  }
+  const getDetailInfo = id => dispatch({type: 'getDetailInfo', payload: id})
+
+  const onNextLevel = () => dispatch({type: 'onNextLevel'})
+
+  const onPlayAgain = () => dispatch({type: 'onPlayAgain'})
 
  useEffect(() =>{
-   if(birdCategory < birdsData.length + 1){
-    setRandomBird(birdsData[birdCategory].find((bird) => bird.id === randomNum))
+  const updateRandomBird = () => dispatch({type: 'updateRandomBird', payload: randomNum})
+  console.log('useEffect')
+   if(state.birdCategory > birdCategory && birdCategory < birdsData.length + 1){
+    setBirdCategory(prevCategory => prevCategory + 1)
+    updateRandomBird();
+   } else if(state.birdCategory === 0) {
+    setBirdCategory(0)
+    updateRandomBird();
    }
- }, [birdCategory])
+ }, [state.birdCategory])
 
- const onPlayAgain = () => {
-   setGameLevel(0)
-   setBirdCategory(0)
-   setTotalScore(0)
- }
 
-  console.log(randomBird.name)
+  console.log(state.randomBird.name)
+
+  const { gameLevel,  nextLevel, selectedBird, randomBird, correctAnswer, totalScore, correctBirdId, inCorrectBirdId} = state
 
   if(gameLevel === birdsData.length){
     return <FinalPopUp onPlayAgain={onPlayAgain} totalScore={totalScore}/>
   }
 
   return (
-    <div className = "container">
+  <div className = "container">
       <Header gameLevel={gameLevel} totalScore={totalScore}/>
       <Question randomBird={randomBird} correctAnswer={correctAnswer}/>
 
@@ -85,6 +73,6 @@ const App = () => {
     <Play nextLevel={nextLevel} onNextLevel={onNextLevel}/>
     </div>
   )
-}
 
+  }
 export default App
