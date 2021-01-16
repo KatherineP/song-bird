@@ -27,26 +27,25 @@ const onBirdSelected = (state, id, randomBird) => {
   } = state;
 
   const bird = birdConfig[birdCategory].find((bird) => bird.id === id);
-
-  if (bird.id === randomBird.id) {
-    const total = totalScore + scorePerRound;
-    return {
-      ...state,
-      correctBirdId: bird.id,
-      nextLevel: true,
-      selectedBird: bird,
-      totalScore: total,
-      correctAnswer: true,
-    };
-  }
+  const total = totalScore + scorePerRound;
   const roundScore = scorePerRound - 1;
   const incorrectBirds = [...inCorrectBirdIds, bird.id];
-  return {
-    ...state,
-    selectedBird: bird,
-    inCorrectBirdIds: incorrectBirds,
-    scorePerRound: roundScore,
-  };
+
+  return bird.id === randomBird.id
+    ? {
+        ...state,
+        correctBirdId: bird.id,
+        nextLevel: true,
+        selectedBird: bird,
+        totalScore: total,
+        correctAnswer: true,
+      }
+    : {
+        ...state,
+        selectedBird: bird,
+        inCorrectBirdIds: incorrectBirds,
+        scorePerRound: roundScore,
+      };
 };
 
 const onNextLevel = (state) => {
