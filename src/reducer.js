@@ -1,64 +1,88 @@
+import { birdsData } from './config';
+const maxBirdInConfig = 6;
+const minBirdInConfig = 1;
+const randomNum = Math.floor(Math.random() * maxBirdInConfig) + minBirdInConfig;
+
+const initState = {
+  gameLevel: 0,
+  nextLevel: false,
+  birdCategory: 0,
+  selectedBird: {},
+  randomBirdId: randomNum,
+  correctAnswer: false,
+  totalScore: 0,
+  scorePerRound: 5,
+  correctBirdId: null,
+  inCorrectBirdIds: [],
+  birdConfig: birdsData,
+};
+
 const onBirdSelected = (state, id, randomBird) => {
+  const {
+    birdConfig,
+    birdCategory,
+    totalScore,
+    inCorrectBirdIds,
+    scorePerRound,
+  } = state;
 
-  const { birdConfig, birdCategory, totalScore, inCorrectBirdId, scorePerRound } = state
+  const bird = birdConfig[birdCategory].find((bird) => bird.id === id);
 
-  const bird = birdConfig[birdCategory].find((bird) => bird.id === id)
-
-  if(bird.id === randomBird.id){
+  if (bird.id === randomBird.id) {
     const total = totalScore + scorePerRound;
     return {
       ...state,
-      correctBirdId : bird.id,
+      correctBirdId: bird.id,
       nextLevel: true,
       selectedBird: bird,
       totalScore: total,
-      correctAnswer: true
-    }
-  } 
-    const roundScore = scorePerRound - 1;
-    const incorrectBirds = [...inCorrectBirdId, bird.id];
-    return {
-      ...state,
-      selectedBird: bird,
-      inCorrectBirdId: incorrectBirds,
-      scorePerRound: roundScore
-    }
-}
-
-const onNextLevel = (state) => {
-  
-  const { birdCategory, gameLevel, birdConfig } = state
-
-  const updatedGameLevel = gameLevel + 1
-  const updatedBirdCategory = birdCategory + 1
-  const initState = {
-    ...state,
-      nextLevel: false,
-      correctBirdId: null,
-      inCorrectBirdId: [],
-      correctAnswer: false,
-      scorePerRound: 5,
-      selectedBird: {},
-      gameLevel: updatedGameLevel
+      correctAnswer: true,
+    };
   }
-  if (birdCategory !== birdConfig.length - 1) {
-    return {
-      ...initState,
-      birdCategory: updatedBirdCategory,
-    }
-  }
-    return initState
-}
-
-const onPlayAgain = (state) => {
+  const roundScore = scorePerRound - 1;
+  const incorrectBirds = [...inCorrectBirdIds, bird.id];
   return {
     ...state,
-    gameLevel: 0,
-    birdCategory: 0,
-    totalScore: 0,
-    randomBirdId: Math.floor(Math.random() * 6) + 1
-  }
-}
+    selectedBird: bird,
+    inCorrectBirdIds: incorrectBirds,
+    scorePerRound: roundScore,
+  };
+};
+
+const onNextLevel = (state) => {
+  const {
+    birdCategory,
+    gameLevel,
+    birdConfig,
+    randomBirdId,
+    totalScore,
+  } = state;
+
+  const updatedGameLevel = gameLevel + 1;
+  const updatedBirdCategory = birdCategory + 1;
+
+  return birdCategory !== birdConfig.length - 1
+    ? {
+        ...initState,
+        randomBirdId: randomBirdId,
+        totalScore: totalScore,
+        birdCategory: updatedBirdCategory,
+        gameLevel: updatedGameLevel,
+      }
+    : {
+        ...initState,
+        randomBirdId: randomBirdId,
+        totalScore: totalScore,
+        gameLevel: updatedGameLevel,
+      };
+};
+
+const onPlayAgain = () => {
+  return {
+    ...initState,
+    randomBirdId: Math.floor(Math.random() * maxBirdInConfig) + minBirdInConfig,
+  };
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -67,10 +91,10 @@ const reducer = (state, action) => {
     case 'onNextLevel':
       return onNextLevel(state);
     case 'onPlayAgain':
-      return onPlayAgain(state);
+      return onPlayAgain();
     default:
       return state;
   }
-}
+};
 
-export default reducer;
+export { reducer, initState };
