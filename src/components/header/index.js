@@ -1,14 +1,20 @@
 import React from 'react';
-import './header.css';
 import { categories } from '../../config';
+import { FlexWrapper } from '../styled';
+import styled from 'styled-components';
+import { MenuWrapper, Navigation } from '../styled';
+
+const Score = styled.h5`
+  align-self: center;
+`;
 
 const Header = ({ gameLevel, totalScore }) => {
   return (
     <div>
-      <div className="header d-flex justify-content-between">
+      <FlexWrapper>
         <h1>SongBird</h1>
-        <h5 className="align-self-center">Score: {totalScore}</h5>
-      </div>
+        <Score>Score: {totalScore}</Score>
+      </FlexWrapper>
       <HeaderMenu gameLevel={gameLevel} />
     </div>
   );
@@ -16,22 +22,19 @@ const Header = ({ gameLevel, totalScore }) => {
 
 const HeaderMenu = ({ gameLevel }) => {
   return (
-    <div className="pagination justify-content-center">
-      <ul className="nav nav-pills">
+    <MenuWrapper>
+      <Navigation variant="pills">
         {categories.map((category, idx) => {
           return (
-            <li className="nav-item" key={category}>
-              <a
-                className={idx === gameLevel ? 'nav-link active' : 'nav-link'}
-                href="/#"
-              >
+            <Navigation.Item key={category}>
+              <Navigation.Link active={idx === gameLevel}>
                 {category}
-              </a>
-            </li>
+              </Navigation.Link>
+            </Navigation.Item>
           );
         })}
-      </ul>
-    </div>
+      </Navigation>
+    </MenuWrapper>
   );
 };
 

@@ -1,19 +1,23 @@
 import React from 'react';
 import { SuccessAnimation } from '../index';
-import './answer.css';
-import classNames from 'classnames';
+import { ListItem } from '../styled';
 
 const Answer = ({ onAnswer, bird, correctBirdId, inCorrectBirdIds }) => {
   const { id: BirdId, name: BirdName } = bird;
-  const classes = classNames('list-group-item', {
-    'list-group-item-success': correctBirdId === BirdId,
-    'list-group-item-danger': inCorrectBirdIds.find((id) => id === BirdId),
-  });
 
   return (
-    <li className={classes} onClick={() => onAnswer(BirdId)}>
+    <ListItem
+      color={
+        inCorrectBirdIds.find((id) => id === BirdId)
+          ? 'danger'
+          : correctBirdId === BirdId
+          ? 'success'
+          : null
+      }
+      onClick={() => onAnswer(BirdId)}
+    >
       {BirdName} {correctBirdId === BirdId && <SuccessAnimation />}
-    </li>
+    </ListItem>
   );
 };
 

@@ -1,6 +1,19 @@
 import React from 'react';
-import './bird-details.css';
 import { Audio } from '../index';
+import styled from 'styled-components';
+import { Image, Card, FlexWrapper, Text } from '../styled';
+
+const Description = styled.p`
+  margin-top: 10px;
+`;
+
+const Separator = styled.hr`
+  margin-bottom: 0.25rem;
+`;
+
+const DetailInfo = styled.div`
+  flex-grow: 1;
+`;
 
 const Details = ({ birdInfo }) => {
   return !Object.entries(birdInfo).length ? (
@@ -13,28 +26,28 @@ const Details = ({ birdInfo }) => {
 const BirdDetailInfo = ({ birdInfo }) => {
   const { name, species, description, image, audio } = birdInfo;
   return (
-    <div className="jumbotron bird-details">
-      <div className="d-flex justify-content-between flex-wrap">
-        <img className="bird-image" src={image} alt="unknown bird" />
-        <div className="flex-grow-1">
-          <h4>{name}</h4>
-          <h6>{species}</h6>
-          <hr className="my-1" />
+    <Card>
+      <FlexWrapper>
+        <Image src={image} alt="unknown bird" />
+        <DetailInfo>
+          <Text>{name}</Text>
+          <p>{species}</p>
+          <Separator />
           <Audio audio={audio} />
-        </div>
-      </div>
-      <p className="bird-description">{description}</p>
-    </div>
+        </DetailInfo>
+      </FlexWrapper>
+      <Description>{description}</Description>
+    </Card>
   );
 };
 
 const EmptyBirdDetail = ({ birdInfo }) => {
   if (!Object.entries(birdInfo).length) {
     return (
-      <div className="instruction">
+      <>
         <p>Послушайте плеер.</p>
         <p>Выберите птицу из списка</p>
-      </div>
+      </>
     );
   }
 };

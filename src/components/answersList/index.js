@@ -1,6 +1,6 @@
 import React from 'react';
-import './answersList.css';
 import { Answer } from '../index';
+import { List } from '../styled';
 
 const AnswersList = ({
   onAnswer,
@@ -9,7 +9,7 @@ const AnswersList = ({
   inCorrectBirdIds,
 }) => {
   return (
-    <ul className="list-group">
+    <List>
       {birdCategory.map((bird) => {
         return (
           <Answer
@@ -21,7 +21,7 @@ const AnswersList = ({
           />
         );
       })}
-    </ul>
+    </List>
   );
 };
 

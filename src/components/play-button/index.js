@@ -1,23 +1,24 @@
 import React from 'react';
-import classNames from 'classnames';
+import { StyledButton } from '../styled';
+import styled from 'styled-components';
 
-const Play = ({ nextLevel, onNextLevel }) => {
-  const classes = classNames('btn btn-lg btn-success btn-block mt-3', {
-    disabled: !nextLevel,
-  });
+const PlayButton = styled(StyledButton)`
+  width: 100%;
+  margin-top: 1rem;
+`;
 
-  return nextLevel ? (
-    <Button type="button" className={classes} onClick={onNextLevel} />
-  ) : (
-    <Button type="button" className={classes} />
-  );
-};
-
-const Button = ({ type, className, onClick }) => {
+const Play = ({ onNextLevel, nextLevel }) => {
   return (
-    <button type={type} className={className} onClick={onClick}>
+    <PlayButton
+      color="success"
+      size="lg"
+      mt={3}
+      type="button"
+      onClick={nextLevel ? onNextLevel : null}
+      disabled={!nextLevel}
+    >
       Next Level!
-    </button>
+    </PlayButton>
   );
 };
 

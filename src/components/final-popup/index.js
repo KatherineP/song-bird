@@ -1,24 +1,36 @@
 import React from 'react';
-import './final-popup.css';
+import styled from 'styled-components';
+import { StyledButton, Text, ContainerPopUp, PopUp } from '../styled';
+
+const Title = styled(Text)`
+  font-size: 3rem;
+`;
+
+const StyledPopUp = styled(PopUp)`
+  background: ${(props) => props.theme.colors.finalPopupColor};
+`;
+
+const Button = styled(StyledButton)`
+  margin-top: 5rem;
+`;
 
 const FinalPopUp = ({ onPlayAgain, totalScore }) => {
   return (
-    <div className="container-popup">
-      <div className="jumbotron popup">
-        <h1 className="display-3">Игра окончена!</h1>
-        <p className="lead">Вы набрали {totalScore} баллов из 30!</p>
-        <p className="lead">
-          <a
-            className="btn btn-primary btn-lg"
-            href="/#"
-            role="button"
-            onClick={onPlayAgain}
-          >
-            Играть снова
-          </a>
-        </p>
-      </div>
-    </div>
+    <ContainerPopUp>
+      <StyledPopUp>
+        <Title>Игра окончена!</Title>
+        <Text>Вы набрали {totalScore} баллов из 30!</Text>
+        <Button
+          color="primary"
+          size="lg"
+          href="/#"
+          role="button"
+          onClick={onPlayAgain}
+        >
+          Играть снова
+        </Button>
+      </StyledPopUp>
+    </ContainerPopUp>
   );
 };
 
