@@ -33,4 +33,4 @@ const Audio = ({ audio }) => {
   );
 };
 
-export { Audio };
+export default Audio;

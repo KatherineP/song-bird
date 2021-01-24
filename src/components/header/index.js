@@ -1,26 +1,46 @@
-import React from 'react';
-import { categories } from '../../config';
-import { FlexWrapper } from '../styled';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { MenuWrapper, Navigation } from '../styled';
+import { MenuWrapper, Navigation, FlexWrapper } from '../styled';
+import { connect } from 'react-redux';
+import { loadBirdCategories } from '../../actions/actions';
+import Spinner from '../spinner';
 
 const Score = styled.h5`
   align-self: center;
 `;
 
-const Header = ({ gameLevel, totalScore }) => {
+const Header = ({
+  gameLevel,
+  totalScore,
+  categories,
+  loadBirdCategories,
+  loading,
+}) => {
+  const hasCategories = !!categories.length;
+
+  useEffect(() => {
+    loadBirdCategories();
+  }, [loadBirdCategories, hasCategories]);
+
   return (
     <div>
       <FlexWrapper>
         <h1>SongBird</h1>
         <Score>Score: {totalScore}</Score>
       </FlexWrapper>
-      <HeaderMenu gameLevel={gameLevel} />
+      <HeaderMenu
+        gameLevel={gameLevel}
+        categories={categories}
+        loading={loading}
+      />
     </div>
   );
 };
 
-const HeaderMenu = ({ gameLevel }) => {
+const HeaderMenu = ({ gameLevel, categories, loading }) => {
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <MenuWrapper>
       <Navigation variant="pills">
@@ -38,4 +58,12 @@ const HeaderMenu = ({ gameLevel }) => {
   );
 };
 
-export { Header };
+const mapStateToProps = ({ gameLevel, totalScore, categories, loading }) => {
+  return { gameLevel, totalScore, categories, loading };
+};
+
+const mapDispatchToProps = {
+  loadBirdCategories,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

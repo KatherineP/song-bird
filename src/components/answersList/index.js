@@ -1,28 +1,20 @@
 import React from 'react';
-import { Answer } from '../index';
+import Answer from '../answer';
 import { List } from '../styled';
+import { connect } from 'react-redux';
 
-const AnswersList = ({
-  onAnswer,
-  birdCategory,
-  correctBirdId,
-  inCorrectBirdIds,
-}) => {
+const AnswersList = ({ birdsFromCategory }) => {
   return (
     <List>
-      {birdCategory.map((bird) => {
-        return (
-          <Answer
-            onAnswer={onAnswer}
-            bird={bird}
-            key={bird.id}
-            correctBirdId={correctBirdId}
-            inCorrectBirdIds={inCorrectBirdIds}
-          />
-        );
+      {birdsFromCategory.map((bird) => {
+        return <Answer key={bird.id} bird={bird} />;
       })}
     </List>
   );
 };
 
-export { AnswersList };
+const mapStateToProps = ({ birdsFromCategory }) => {
+  return { birdsFromCategory };
+};
+
+export default connect(mapStateToProps)(AnswersList);

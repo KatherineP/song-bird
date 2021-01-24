@@ -83,6 +83,7 @@ const PopUp = styled(Jumbotron)`
   left: 0;
   margin: auto;
   padding: 3rem 2rem;
+  background: ${(props) => props.theme.colors.finalPopupColor};
 `;
 
 export {
