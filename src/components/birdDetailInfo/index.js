@@ -2,7 +2,6 @@ import React from 'react';
 import Audio from '../audio';
 import styled from 'styled-components';
 import { Image, Card, FlexWrapper, Text } from '../styled';
-import { connect } from 'react-redux';
 
 const Description = styled.p`
   margin-top: 10px;
@@ -15,14 +14,6 @@ const Separator = styled.hr`
 const DetailInfo = styled.div`
   flex-grow: 1;
 `;
-
-const Details = ({ selectedBird }) => {
-  return !Object.entries(selectedBird).length ? (
-    <EmptyBirdDetail selectedBird={selectedBird} />
-  ) : (
-    <BirdDetailInfo selectedBird={selectedBird} />
-  );
-};
 
 const BirdDetailInfo = ({ selectedBird }) => {
   const { name, species, description, image, audio } = selectedBird;
@@ -42,19 +33,4 @@ const BirdDetailInfo = ({ selectedBird }) => {
   );
 };
 
-const EmptyBirdDetail = ({ selectedBird }) => {
-  if (!Object.entries(selectedBird).length) {
-    return (
-      <>
-        <p>Послушайте плеер.</p>
-        <p>Выберите птицу из списка</p>
-      </>
-    );
-  }
-};
-
-const mapStateToProps = ({ game: { selectedBird } }) => {
-  return { selectedBird };
-};
-
-export default connect(mapStateToProps)(Details);
+export default BirdDetailInfo;

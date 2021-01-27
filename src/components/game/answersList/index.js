@@ -1,9 +1,9 @@
 import React from 'react';
 import Answer from '../answer';
-import { List } from '../styled';
+import { List } from '../../styled';
 import { connect } from 'react-redux';
 import Spinner from '../spinner';
-import { onSelectAnswer } from '../../actions/actions';
+import { onSelectAnswer } from '../../../actions/actions';
 
 const AnswersList = ({
   birdsFromCategory,

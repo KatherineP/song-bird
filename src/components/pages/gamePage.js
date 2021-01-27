@@ -1,15 +1,15 @@
 import React from 'react';
 import { Wrapper, StyledRow, Column } from '../styled';
-import Header from '../header';
-import Question from '../question';
-import AnswersList from '../answersList';
-import Details from '../bird-details';
-import Play from '../play-button';
-import FinalPopUp from '../final-popup';
+import Header from '../game/header';
+import Question from '../game/question';
+import AnswersList from '../game/answersList';
+import DetailsContainerGame from '../game/bird-details-container';
+import Play from '../game/play-button';
+import FinalPopUp from '../game/final-popup';
 import { connect } from 'react-redux';
 
 const Game = ({ gameLevel, randomBird }) => {
-  //console.log(randomBird.name);
+  console.log(randomBird.name);
   if (gameLevel > 5) {
     return <FinalPopUp />;
   }
@@ -22,7 +22,7 @@ const Game = ({ gameLevel, randomBird }) => {
           <AnswersList />
         </Column>
         <Column md={6}>
-          <Details />
+          <DetailsContainerGame />
         </Column>
       </StyledRow>
       <Play />

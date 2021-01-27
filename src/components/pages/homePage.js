@@ -11,7 +11,6 @@ const StyledPopUp = styled(PopUp)`
 const Button = styled(StyledButton)`
   display: block;
   margin-bottom: 1rem;
-  /* text-decoration: none; */
   font-size: xx-large;
 `;
 
@@ -26,7 +25,6 @@ const HomePage = () => {
           size="lg"
           href="/#"
           type="button"
-          // onClick={() => history.push('/games')}
         >
           Играть
         </Button>
@@ -37,7 +35,6 @@ const HomePage = () => {
           size="lg"
           href="/#"
           type="button"
-          //onClick={() => history.push('/birdCatalog')}
         >
           Каталог Птиц
         </Button>

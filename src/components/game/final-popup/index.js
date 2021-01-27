@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledButton, Text, ContainerPopUp, PopUp } from '../styled';
+import { StyledButton, Text, ContainerPopUp, PopUp } from '../../styled';
 import { connect } from 'react-redux';
-import { onPlayAgain } from '../../actions/actions';
+import { onPlayAgain } from '../../../actions/actions';
 import { Link } from 'react-router-dom';
 
 const Title = styled(Text)`

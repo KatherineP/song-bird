@@ -8,6 +8,7 @@ import {
   ON_NEXT_LEVEL,
   ON_PLAY_AGAIN,
   LOAD_ALL_BIRDS,
+  SELECT_BIRD_FROM_CATALOG,
 } from '../reducers/types';
 
 const birdsService = new BirdsService();
@@ -75,6 +76,11 @@ const loadAllBirds = () => {
   };
 };
 
+const selectBirdFromCatalog = (selectedBird) => ({
+  type: SELECT_BIRD_FROM_CATALOG,
+  selectedBird,
+});
+
 export {
   loadBirdCategories,
   loadBirdsFromCategory,
@@ -83,4 +89,5 @@ export {
   onNextLevel,
   onPlayAgain,
   loadAllBirds,
+  selectBirdFromCatalog,
 };

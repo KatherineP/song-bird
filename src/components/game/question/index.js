@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
-import img from '../../assets/bird.jpg';
-import Audio from '../audio';
+import img from '../../../assets/bird.jpg';
+import Audio from '../../audio';
 import styled from 'styled-components';
-import { Image, Card } from '../styled';
+import { Image, Card } from '../../styled';
 import { connect } from 'react-redux';
-import { loadBirdsFromCategory, selectRandomBird } from '../../actions/actions';
+import {
+  loadBirdsFromCategory,
+  selectRandomBird,
+} from '../../../actions/actions';
 import Spinner from '../spinner';
 
 const QuestionCard = styled(Card)`

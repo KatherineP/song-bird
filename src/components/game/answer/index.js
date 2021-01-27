@@ -1,6 +1,6 @@
 import React from 'react';
-import { SuccessAnimation } from '../index';
-import { ListItem } from '../styled';
+import { SuccessAnimation } from '../../index';
+import { ListItem } from '../../styled';
 
 const Answer = ({ bird, correctBirdId, inCorrectBirdIds, onSelectAnswer }) => {
   const { id: BirdId, name: BirdName } = bird;

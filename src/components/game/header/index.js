@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { MenuWrapper, Navigation, FlexWrapper } from '../styled';
+import { MenuWrapper, Navigation, FlexWrapper } from '../../styled';
 import { connect } from 'react-redux';
-import { loadBirdCategories } from '../../actions/actions';
+import { loadBirdCategories } from '../../../actions/actions';
 import Spinner from '../spinner';
 
 const Score = styled.h5`
