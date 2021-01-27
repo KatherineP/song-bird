@@ -9,7 +9,7 @@ import FinalPopUp from '../final-popup';
 import { connect } from 'react-redux';
 
 const Game = ({ gameLevel, randomBird }) => {
-  console.log(randomBird.name);
+  //console.log(randomBird.name);
   if (gameLevel > 5) {
     return <FinalPopUp />;
   }
@@ -29,7 +29,7 @@ const Game = ({ gameLevel, randomBird }) => {
     </Wrapper>
   );
 };
-const mapStateToProps = ({ gameLevel, randomBird }) => {
+const mapStateToProps = ({ game: { gameLevel, randomBird } }) => {
   return { gameLevel, randomBird };
 };
 

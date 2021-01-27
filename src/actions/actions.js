@@ -7,6 +7,7 @@ import {
   ON_SELECT_ANSWER,
   ON_NEXT_LEVEL,
   ON_PLAY_AGAIN,
+  LOAD_ALL_BIRDS,
 } from '../reducers/types';
 
 const birdsService = new BirdsService();
@@ -64,6 +65,16 @@ const onPlayAgain = () => {
   };
 };
 
+const loadAllBirds = () => {
+  return async (dispatch) => {
+    const birds = await birdsService.getBirds();
+    dispatch({
+      type: LOAD_ALL_BIRDS,
+      birds,
+    });
+  };
+};
+
 export {
   loadBirdCategories,
   loadBirdsFromCategory,
@@ -71,4 +82,5 @@ export {
   onSelectAnswer,
   onNextLevel,
   onPlayAgain,
+  loadAllBirds,
 };

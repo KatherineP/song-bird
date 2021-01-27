@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Image, Card } from '../styled';
 import { connect } from 'react-redux';
 import { loadBirdsFromCategory, selectRandomBird } from '../../actions/actions';
+import Spinner from '../spinner';
 
 const QuestionCard = styled(Card)`
   margin: 2rem auto;
@@ -50,32 +51,41 @@ const Question = ({
     }
   }, [hasBirdsFromCategories, selectRandomBird, birdsFromCategory]);
 
-  if (Object.keys(randomBird).length > 0) {
-    const { name, audio, image } = randomBird;
-    return (
-      <QuestionCard>
-        <Image src={correctAnswer ? image : img} alt="unknown bird" />
-        <Wrapper>
-          <BirdName>
-            {correctAnswer ? name : '\u2217'.repeat(name.length)}
-          </BirdName>
-          <Separator />
-          <Audio audio={audio} />
-        </Wrapper>
-      </QuestionCard>
+  const questionInfo =
+    Object.keys(randomBird).length > 0 ? (
+      <QuestionInfo randomBird={randomBird} correctAnswer={correctAnswer} />
+    ) : (
+      <Spinner />
     );
-  } else {
-    return <div>loading</div>;
-  }
+
+  return <QuestionCard>{questionInfo}</QuestionCard>;
+};
+
+const QuestionInfo = ({ randomBird, correctAnswer }) => {
+  const { name, audio, image } = randomBird;
+  return (
+    <>
+      <Image src={correctAnswer ? image : img} alt="unknown bird" />
+      <Wrapper>
+        <BirdName>
+          {correctAnswer ? name : '\u2217'.repeat(name.length)}
+        </BirdName>
+        <Separator />
+        <Audio audio={audio} />
+      </Wrapper>
+    </>
+  );
 };
 
 const mapStateToProps = ({
-  randomBird,
-  correctAnswer,
-  categories,
-  gameLevel,
-  birdsFromCategory,
-  loading,
+  game: {
+    randomBird,
+    correctAnswer,
+    categories,
+    gameLevel,
+    birdsFromCategory,
+    loading,
+  },
 }) => {
   return {
     randomBird,

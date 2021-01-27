@@ -6,6 +6,7 @@ const birdsData = [
       {
         id: 1,
         name: 'Ворон',
+        name_English: 'Raven',
         species: 'Corvus corax',
         description:
           'Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.',
@@ -17,6 +18,7 @@ const birdsData = [
       {
         id: 2,
         name: 'Журавль',
+        name_English: 'Crane',
         species: 'Grus grus',
         description:
           'Звуки, издаваемые журавлем, похожи на звонкое «кур-лы – кур-лы». Журавли чаще всего поют дуэтом – одна птица начинает запев со слога «кур», а вторая подхватывает «лы». Если птица поёт одна, то она издает только звук «кур».',
@@ -27,6 +29,7 @@ const birdsData = [
       {
         id: 3,
         name: 'Ласточка',
+        name_English: 'Swallow',
         species: 'Delichon urbicum',
         description:
           'Для ласточек характерно негромкое щебетание. Песни ласточек не смолкают на протяжении всего лета. Исследователи различают у птиц до 6 щебечущих звуков: «вит», «ви-вит», «чивит», «чиривит» и т.п. Ласточки любят петь дуэтом.',
@@ -38,6 +41,7 @@ const birdsData = [
       {
         id: 4,
         name: 'Козодой',
+        name_English: 'Nightjar',
         species: 'Caprimulgus europaeus',
         description:
           'Козодой – неприметная птица, известная благодаря своему голосу. Песня козодоя звучит как монотонная трель похожая на тарахтение мотоцикла. Такое дребезжание слышно от заката до рассвета, его тональность, частота и громкость изменяются. ',
@@ -48,6 +52,7 @@ const birdsData = [
       {
         id: 5,
         name: 'Кукушка',
+        name_English: 'Cuckoo',
         species: 'Cuculus canorus',
         description:
           'Кукушку назвали так из-за особенностей ее песен. Звонкое «ку-ку» не спутать ни с какой другой птицей. Кукушки не строят гнезда, их потомство выращивают другие виды пернатых, которым кукушки подбрасывают свои яйца.',
@@ -58,6 +63,7 @@ const birdsData = [
       {
         id: 6,
         name: 'Синица',
+        name_English: 'Titmouse',
         species: 'Parus major',
         description:
           'В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год, немного затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от вредителей десятки деревьев.',
@@ -428,11 +434,19 @@ export default class BirdsService {
 
   async getBirds() {
     await delay(0);
-    return birdsData;
+    return birdsData.map((bird) => {
+      return bird.birds;
+    });
   }
 
+  // async getBirds() {
+  //   await delay(0);
+  //   const a = birdsData[0];
+  //   return a.birds;
+  // }
+
   async getBirdsFromCategory(category) {
-    await delay(3000);
+    await delay(1000);
     const birdCategory = birdsData.filter((bird) => bird.category === category);
     return birdCategory[0].birds;
   }

@@ -38,9 +38,16 @@ const Header = ({
 };
 
 const HeaderMenu = ({ gameLevel, categories, loading }) => {
-  if (loading) {
-    return <Spinner />;
-  }
+  const spinner = loading ? <Spinner /> : null;
+  return (
+    <MenuWrapper>
+      {spinner}
+      <HeaderItems gameLevel={gameLevel} categories={categories} />
+    </MenuWrapper>
+  );
+};
+
+const HeaderItems = ({ gameLevel, categories }) => {
   return (
     <MenuWrapper>
       <Navigation variant="pills">
@@ -58,7 +65,9 @@ const HeaderMenu = ({ gameLevel, categories, loading }) => {
   );
 };
 
-const mapStateToProps = ({ gameLevel, totalScore, categories, loading }) => {
+const mapStateToProps = ({
+  game: { gameLevel, totalScore, categories, loading },
+}) => {
   return { gameLevel, totalScore, categories, loading };
 };
 

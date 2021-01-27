@@ -5,9 +5,11 @@ import {
   ON_SELECT_ANSWER,
   ON_NEXT_LEVEL,
   ON_PLAY_AGAIN,
+  LOAD_ALL_BIRDS,
 } from './types';
+import { combineReducers } from 'redux';
 
-const initState = {
+const initStateGame = {
   gameLevel: 0,
   selectedBird: {},
   correctAnswer: false,
@@ -19,6 +21,11 @@ const initState = {
   birdsFromCategory: [],
   randomBird: {},
   loading: true,
+  birds: [],
+};
+
+const initStateBirdCatalog = {
+  birds: [],
 };
 
 const onSelectAnswer = (state, selectedBird) => {
@@ -42,23 +49,25 @@ const onSelectAnswer = (state, selectedBird) => {
 };
 
 const onNextLevel = (state) => {
-  const { gameLevel, totalScore } = state;
+  const { gameLevel, totalScore, categories } = state;
 
   return {
-    ...initState,
+    ...initStateGame,
     totalScore: totalScore,
     gameLevel: gameLevel + 1,
+    categories: categories,
+    loading: false,
   };
 };
 
 const onPlayAgain = (randomNum) => {
   return {
-    ...initState,
+    ...initStateGame,
     randomBirdId: randomNum,
   };
 };
 
-const reducer = (state = initState, action) => {
+export function gameReducer(state = initStateGame, action) {
   switch (action.type) {
     case LOAD_BIRD_CATEGORIES:
       return { ...state, categories: action.categories, loading: false };
@@ -66,7 +75,6 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         birdsFromCategory: action.birdsFromCategory,
-        loading: false,
       };
     case SELECT_RANDOM_BIRD:
       return {
@@ -82,6 +90,18 @@ const reducer = (state = initState, action) => {
     default:
       return state;
   }
-};
+}
 
-export default reducer;
+export function birdCatalogReducer(state = initStateBirdCatalog, action) {
+  switch (action.type) {
+    case LOAD_ALL_BIRDS:
+      return { ...state, birds: action.birds };
+    default:
+      return state;
+  }
+}
+
+export const reducer = combineReducers({
+  game: gameReducer,
+  birdCatalog: birdCatalogReducer,
+});

@@ -93,9 +93,10 @@
 .loadingio-spinner-spin-5fc9ggxsl8 {
   width: 61px;
   height: 61px;
-  display: inline-block;
+  display: block;
   overflow: hidden;
   background: none;
+  margin: 0 auto;
 }
 .ldio-ucq9q4jmcs {
   width: 100%;

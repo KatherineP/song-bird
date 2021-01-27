@@ -11,6 +11,9 @@ const Title = styled(Text)`
 
 const Button = styled(StyledButton)`
   margin-top: 5rem;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: xx-large;
 `;
 
 const FinalPopUp = ({ onPlayAgain, totalScore }) => {
@@ -19,23 +22,24 @@ const FinalPopUp = ({ onPlayAgain, totalScore }) => {
       <PopUp>
         <Title>Игра окончена!</Title>
         <Text>Вы набрали {totalScore} баллов из 30!</Text>
-        <Link to="/game">
-          <Button
-            color="primary"
-            size="lg"
-            href="/#"
-            role="button"
-            onClick={() => onPlayAgain()}
-          >
-            Играть снова
-          </Button>
-        </Link>
+        <Button
+          to="/game"
+          as={Link}
+          color="primary"
+          size="lg"
+          href="/#"
+          type="button"
+          onClick={() => onPlayAgain()}
+        >
+          {' '}
+          Играть еще раз
+        </Button>
       </PopUp>
     </ContainerPopUp>
   );
 };
 
-const mapStateToProps = ({ totalScore }) => {
+const mapStateToProps = ({ game: { totalScore } }) => {
   return { totalScore };
 };
 

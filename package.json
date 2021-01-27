@@ -2,7 +2,7 @@
   "name": "test-pr",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://katherinep.github.io/song-bird",
+  "homepage": "https://katherinep.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -19,6 +19,7 @@
     "react-scripts": "4.0.1",
     "reactstrap": "^8.8.1",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "styled-jumbotron-component": "^4.0.0",

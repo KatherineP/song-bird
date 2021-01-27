@@ -53,7 +53,7 @@ const EmptyBirdDetail = ({ selectedBird }) => {
   }
 };
 
-const mapStateToProps = ({ selectedBird }) => {
+const mapStateToProps = ({ game: { selectedBird } }) => {
   return { selectedBird };
 };
 

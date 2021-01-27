@@ -11,35 +11,36 @@ const StyledPopUp = styled(PopUp)`
 const Button = styled(StyledButton)`
   display: block;
   margin-bottom: 1rem;
+  /* text-decoration: none; */
+  font-size: xx-large;
 `;
 
 const HomePage = () => {
   return (
     <ContainerPopUp>
       <StyledPopUp>
-        <Link to="/game">
-          <Button
-            color="primary"
-            size="lg"
-            href="/#"
-            type="button"
-            //onClick={() => onPlay()}
-          >
-            Играть
-          </Button>
-        </Link>
-
-        <Link to="/birdCatalog">
-          <Button
-            color="primary"
-            size="lg"
-            href="/#"
-            type="button"
-            //onClick={() => onPlayAgain()}
-          >
-            Каталог Птиц
-          </Button>
-        </Link>
+        <Button
+          to="/game"
+          as={Link}
+          color="primary"
+          size="lg"
+          href="/#"
+          type="button"
+          // onClick={() => history.push('/games')}
+        >
+          Играть
+        </Button>
+        <Button
+          to="/birdCatalog"
+          as={Link}
+          color="primary"
+          size="lg"
+          href="/#"
+          type="button"
+          //onClick={() => history.push('/birdCatalog')}
+        >
+          Каталог Птиц
+        </Button>
       </StyledPopUp>
     </ContainerPopUp>
   );

@@ -24,7 +24,7 @@ const Play = ({ correctAnswer, onNextLevel }) => {
   );
 };
 
-const mapStateToProps = ({ correctAnswer }) => {
+const mapStateToProps = ({ game: { correctAnswer } }) => {
   return { correctAnswer };
 };
 

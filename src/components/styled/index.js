@@ -14,7 +14,9 @@ const Wrapper = styled(Container)`
   margin: 20px auto;
 `;
 
-const Navigation = styled(Nav)``;
+const Navigation = styled(Nav)`
+  margin: 0 auto;
+`;
 
 const StyledRow = styled(Row)``;
 
