@@ -11,4 +11,4 @@ const EmptyBirdDetail = ({ selectedBird }) => {
   }
 };
 
-export default EmptyBirdDetail;
+export { EmptyBirdDetail };

@@ -18,4 +18,4 @@ const Bird = ({ bird }) => {
   );
 };
 
-export default Bird;
+export { Bird };

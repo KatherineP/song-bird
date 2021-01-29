@@ -1,5 +1,5 @@
 import React from 'react';
-import Audio from '../audio';
+import { Audio } from '../index';
 import styled from 'styled-components';
 import { Image, Card, FlexWrapper, Text } from '../styled';
 
@@ -33,4 +33,4 @@ const BirdDetailInfo = ({ selectedBird }) => {
   );
 };
 
-export default BirdDetailInfo;
+export { BirdDetailInfo };

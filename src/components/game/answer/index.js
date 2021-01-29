@@ -26,4 +26,4 @@ const Answer = ({ bird }) => {
   );
 };
 
-export default Answer;
+export { Answer };

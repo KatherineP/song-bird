@@ -1,6 +1,5 @@
 import React from 'react';
-import BirdDetailInfo from '../../birdDetailInfo';
-import EmptyBirdDetail from '../../emptyBirdDetail';
+import { BirdDetailInfo, EmptyBirdDetail } from '../../index';
 import { useSelector } from 'react-redux';
 
 const DetailsContainerCatalog = () => {
@@ -11,4 +10,4 @@ const DetailsContainerCatalog = () => {
     <BirdDetailInfo selectedBird={selectedBird} />
   );
 };
-export default DetailsContainerCatalog;
+export { DetailsContainerCatalog };

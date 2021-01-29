@@ -40,4 +40,4 @@ const FinalPopUp = () => {
     </ContainerPopUp>
   );
 };
-export default FinalPopUp;
+export { FinalPopUp };

@@ -3,7 +3,7 @@ import { List } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { loadAllBirds } from '../../../actions/actions';
-import Bird from '../bird';
+import { Bird } from '../../index';
 
 const StyledList = styled(List)`
   max-height: 23rem;
@@ -34,4 +34,4 @@ const BirdList = () => {
   }
 };
 
-export default BirdList;
+export { BirdList };

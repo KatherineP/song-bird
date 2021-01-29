@@ -1,11 +1,13 @@
 import React from 'react';
 import { Wrapper, StyledRow, Column } from '../components/styled';
-import Header from '../components/game/header';
-import Question from '../components/game/question';
-import AnswersList from '../components/game/answersList';
-import DetailsContainerGame from '../components/game/bird-details-container';
-import Play from '../components/game/play-button';
-import FinalPopUp from '../components/game/final-popup';
+import {
+  AnswersList,
+  Header,
+  Question,
+  DetailsContainerGame,
+  Play,
+  FinalPopUp,
+} from '../components/index';
 import { useSelector } from 'react-redux';
 
 const Game = () => {

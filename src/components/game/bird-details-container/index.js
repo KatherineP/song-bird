@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import BirdDetailInfo from '../../birdDetailInfo';
-import EmptyBirdDetail from '../../emptyBirdDetail';
+import { BirdDetailInfo, EmptyBirdDetail } from '../../index';
 
 const DetailsContainerGame = () => {
   const selectedBird = useSelector((state) => state.game.selectedBird);
@@ -12,4 +11,4 @@ const DetailsContainerGame = () => {
   );
 };
 
-export default DetailsContainerGame;
+export { DetailsContainerGame };

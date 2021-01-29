@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import img from '../../../assets/bird.jpg';
-import Audio from '../../audio';
 import styled from 'styled-components';
 import { Image, Card } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,7 +7,7 @@ import {
   loadBirdsFromCategory,
   selectRandomBird,
 } from '../../../actions/actions';
-import Spinner from '../spinner';
+import { Spinner, Audio } from '../../index';
 
 const QuestionCard = styled(Card)`
   margin: 2rem auto;
@@ -78,4 +77,4 @@ const QuestionInfo = ({ randomBird, correctAnswer }) => {
     </>
   );
 };
-export default Question;
+export { Question };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MenuWrapper, Navigation, FlexWrapper } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadBirdCategories } from '../../../actions/actions';
-import Spinner from '../spinner';
+import { Spinner } from '../../index';
 
 const Score = styled.h5`
   align-self: center;
@@ -64,4 +64,4 @@ const HeaderItems = ({ gameLevel, categories }) => {
   );
 };
 
-export default Header;
+export { Header };

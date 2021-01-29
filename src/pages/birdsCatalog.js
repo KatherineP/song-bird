@@ -1,8 +1,6 @@
 import React from 'react';
 import { Wrapper, StyledRow, Column } from '../components/styled';
-import BirdList from '../components/birdCatalog/birdList';
-import DetailsContainerCatalog from '../components/birdCatalog/bird-details-container';
-
+import { BirdList, DetailsContainerCatalog } from '../components/index';
 const BirdCatalog = () => {
   return (
     <Wrapper>
