@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import BirdDetailInfo from '../../birdDetailInfo';
 import EmptyBirdDetail from '../../emptyBirdDetail';
 
-const DetailsContainerGame = ({ selectedBird }) => {
+const DetailsContainerGame = () => {
+  const selectedBird = useSelector((state) => state.game.selectedBird);
   return !Object.entries(selectedBird).length ? (
     <EmptyBirdDetail selectedBird={selectedBird} />
   ) : (
@@ -11,8 +12,4 @@ const DetailsContainerGame = ({ selectedBird }) => {
   );
 };
 
-const mapStateToProps = ({ game: { selectedBird } }) => {
-  return { selectedBird };
-};
-
-export default connect(mapStateToProps)(DetailsContainerGame);
+export default DetailsContainerGame;

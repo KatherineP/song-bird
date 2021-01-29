@@ -1,7 +1,7 @@
 import React from 'react';
-import { Wrapper, StyledRow, Column } from '../styled';
-import BirdList from '../birdCatalog/birdList';
-import DetailsContainerCatalog from '../birdCatalog/bird-details-container';
+import { Wrapper, StyledRow, Column } from '../components/styled';
+import BirdList from '../components/birdCatalog/birdList';
+import DetailsContainerCatalog from '../components/birdCatalog/bird-details-container';
 
 const BirdCatalog = () => {
   return (

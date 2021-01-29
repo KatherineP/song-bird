@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledButton } from '../../styled';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { onNextLevel } from '../../../actions/actions';
 
 const PlayButton = styled(StyledButton)`
@@ -9,14 +9,16 @@ const PlayButton = styled(StyledButton)`
   margin-top: 1rem;
 `;
 
-const Play = ({ correctAnswer, onNextLevel }) => {
+const Play = () => {
+  const dispatch = useDispatch();
+  const correctAnswer = useSelector((state) => state.game.correctAnswer);
   return (
     <PlayButton
       color="success"
       size="lg"
       mt={3}
       type="button"
-      onClick={() => (correctAnswer ? onNextLevel() : null)}
+      onClick={() => (correctAnswer ? dispatch(onNextLevel()) : null)}
       disabled={!correctAnswer}
     >
       Next Level!
@@ -24,12 +26,4 @@ const Play = ({ correctAnswer, onNextLevel }) => {
   );
 };
 
-const mapStateToProps = ({ game: { correctAnswer } }) => {
-  return { correctAnswer };
-};
-
-const mapDispatchToProps = {
-  onNextLevel,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Play);
+export default Play;

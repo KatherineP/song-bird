@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledButton, ContainerPopUp, PopUp } from '../styled';
+import { StyledButton, ContainerPopUp, PopUp } from '../components/styled';
 import { Link } from 'react-router-dom';
 
 const StyledPopUp = styled(PopUp)`

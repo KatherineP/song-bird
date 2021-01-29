@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledButton, Text, ContainerPopUp, PopUp } from '../../styled';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { onPlayAgain } from '../../../actions/actions';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,9 @@ const Button = styled(StyledButton)`
   font-size: xx-large;
 `;
 
-const FinalPopUp = ({ onPlayAgain, totalScore }) => {
+const FinalPopUp = () => {
+  const dispatch = useDispatch();
+  const totalScore = useSelector((state) => state.game.totalScore);
   return (
     <ContainerPopUp>
       <PopUp>
@@ -29,7 +31,7 @@ const FinalPopUp = ({ onPlayAgain, totalScore }) => {
           size="lg"
           href="/#"
           type="button"
-          onClick={() => onPlayAgain()}
+          onClick={() => dispatch(onPlayAgain())}
         >
           {' '}
           Играть еще раз
@@ -38,13 +40,4 @@ const FinalPopUp = ({ onPlayAgain, totalScore }) => {
     </ContainerPopUp>
   );
 };
-
-const mapStateToProps = ({ game: { totalScore } }) => {
-  return { totalScore };
-};
-
-const mapDispatchToProps = {
-  onPlayAgain,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FinalPopUp);
+export default FinalPopUp;

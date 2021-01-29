@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { MenuWrapper, Navigation, FlexWrapper } from '../../styled';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { loadBirdCategories } from '../../../actions/actions';
 import Spinner from '../spinner';
 
@@ -9,18 +9,17 @@ const Score = styled.h5`
   align-self: center;
 `;
 
-const Header = ({
-  gameLevel,
-  totalScore,
-  categories,
-  loadBirdCategories,
-  loading,
-}) => {
+const Header = () => {
+  const dispatch = useDispatch();
+  const totalScore = useSelector((state) => state.game.totalScore);
+  const categories = useSelector((state) => state.game.categories);
+  const gameLevel = useSelector((state) => state.game.gameLevel);
+  const loading = useSelector((state) => state.game.loading);
   const hasCategories = !!categories.length;
 
   useEffect(() => {
-    loadBirdCategories();
-  }, [loadBirdCategories, hasCategories]);
+    dispatch(loadBirdCategories());
+  }, [hasCategories, dispatch]);
 
   return (
     <div>
@@ -65,14 +64,4 @@ const HeaderItems = ({ gameLevel, categories }) => {
   );
 };
 
-const mapStateToProps = ({
-  game: { gameLevel, totalScore, categories, loading },
-}) => {
-  return { gameLevel, totalScore, categories, loading };
-};
-
-const mapDispatchToProps = {
-  loadBirdCategories,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

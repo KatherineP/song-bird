@@ -439,15 +439,11 @@ export default class BirdsService {
     });
   }
 
-  // async getBirds() {
-  //   await delay(0);
-  //   const a = birdsData[0];
-  //   return a.birds;
-  // }
-
   async getBirdsFromCategory(category) {
     await delay(1000);
-    const birdCategory = birdsData.filter((bird) => bird.category === category);
-    return birdCategory[0].birds;
+    const birdCategory = birdsData.filter(
+      (bird) => bird.category === category
+    )[0];
+    return birdCategory.birds;
   }
 }

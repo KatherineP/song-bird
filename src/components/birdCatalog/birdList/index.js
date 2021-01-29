@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { List } from '../../styled';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { loadAllBirds, selectBirdFromCatalog } from '../../../actions/actions';
+import { loadAllBirds } from '../../../actions/actions';
 import Bird from '../bird';
 
 const StyledList = styled(List)`
@@ -10,25 +10,21 @@ const StyledList = styled(List)`
   overflow-y: scroll;
 `;
 
-const BirdList = ({ birds, loadAllBirds, selectBirdFromCatalog }) => {
+const BirdList = () => {
+  const birds = useSelector((state) => state.birdCatalog.birds);
+  const dispatch = useDispatch();
   const hasBirds = !!birds.length;
 
   useEffect(() => {
-    loadAllBirds();
-  }, [loadAllBirds]);
+    dispatch(loadAllBirds());
+  }, [dispatch]);
 
   if (hasBirds) {
     return (
       <StyledList>
         {birds.map((category) => {
           return category.map((bird) => {
-            return (
-              <Bird
-                key={bird.id}
-                bird={bird}
-                selectBirdFromCatalog={selectBirdFromCatalog}
-              />
-            );
+            return <Bird key={bird.id} bird={bird} />;
           });
         })}
       </StyledList>
@@ -38,14 +34,4 @@ const BirdList = ({ birds, loadAllBirds, selectBirdFromCatalog }) => {
   }
 };
 
-const mapStateToProps = ({ birdCatalog: { birds } }) => {
-  console.log(birds);
-  return { birds };
-};
-
-const mapDispatchToProps = {
-  loadAllBirds,
-  selectBirdFromCatalog,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BirdList);
+export default BirdList;

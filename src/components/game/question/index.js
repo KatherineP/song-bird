@@ -3,7 +3,7 @@ import img from '../../../assets/bird.jpg';
 import Audio from '../../audio';
 import styled from 'styled-components';
 import { Image, Card } from '../../styled';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   loadBirdsFromCategory,
   selectRandomBird,
@@ -28,31 +28,30 @@ const BirdName = styled.p`
   font-size: 1.6rem;
 `;
 
-const Question = ({
-  randomBird,
-  correctAnswer,
-  categories,
-  gameLevel,
-  birdsFromCategory,
-  loadBirdsFromCategory,
-  selectRandomBird,
-  loading,
-}) => {
+const Question = () => {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.game.categories);
+  const gameLevel = useSelector((state) => state.game.gameLevel);
+  const correctAnswer = useSelector((state) => state.game.correctAnswer);
+  const randomBird = useSelector((state) => state.game.randomBird);
+  const birdsFromCategory = useSelector(
+    (state) => state.game.birdsFromCategory
+  );
   const hasBirdsFromCategories = !!birdsFromCategory.length;
   const hasCategories = !!categories.length;
 
   useEffect(() => {
     if (hasCategories) {
       const birdCategoryId = categories[gameLevel];
-      loadBirdsFromCategory(birdCategoryId);
+      dispatch(loadBirdsFromCategory(birdCategoryId));
     }
-  }, [loadBirdsFromCategory, hasCategories, categories, gameLevel]);
+  }, [hasCategories, categories, gameLevel, dispatch]);
 
   useEffect(() => {
     if (hasBirdsFromCategories) {
-      selectRandomBird(birdsFromCategory);
+      dispatch(selectRandomBird(birdsFromCategory));
     }
-  }, [hasBirdsFromCategories, selectRandomBird, birdsFromCategory]);
+  }, [birdsFromCategory, dispatch, hasBirdsFromCategories]);
 
   const questionInfo =
     Object.keys(randomBird).length > 0 ? (
@@ -79,30 +78,4 @@ const QuestionInfo = ({ randomBird, correctAnswer }) => {
     </>
   );
 };
-
-const mapStateToProps = ({
-  game: {
-    randomBird,
-    correctAnswer,
-    categories,
-    gameLevel,
-    birdsFromCategory,
-    loading,
-  },
-}) => {
-  return {
-    randomBird,
-    correctAnswer,
-    categories,
-    gameLevel,
-    birdsFromCategory,
-    loading,
-  };
-};
-
-const mapDispatchToProps = {
-  loadBirdsFromCategory,
-  selectRandomBird,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Question);
+export default Question;

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import Game from '../pages/gamePage';
-import BirdCatalog from '../pages/birdsCatalog';
-import HomePage from '../pages/homePage';
+import Game from '../../pages/gamePage';
+import BirdCatalog from '../../pages/birdsCatalog';
+import HomePage from '../../pages/homePage';
 import { Route, Switch } from 'react-router-dom';
 
 const App = () => {
