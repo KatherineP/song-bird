@@ -2,7 +2,7 @@ import React from 'react';
 import { SuccessAnimation } from '../../index';
 import { ListItem } from '../../styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { onSelectAnswer } from '../../../actions/actions';
+import { onSelectAnswer } from '../../../store/game/actionCreators';
 
 const Answer = ({ bird }) => {
   const correctBirdId = useSelector((state) => state.game.correctBirdId);

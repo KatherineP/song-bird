@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { List } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { loadAllBirds } from '../../../actions/actions';
+import { loadAllBirds } from '../../../store/birdCatalog/middleware';
 import { Bird } from '../../index';
 
 const StyledList = styled(List)`

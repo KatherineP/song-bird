@@ -3,10 +3,8 @@ import img from '../../../assets/bird.jpg';
 import styled from 'styled-components';
 import { Image, Card } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  loadBirdsFromCategory,
-  selectRandomBird,
-} from '../../../actions/actions';
+import { loadBirdsFromCategory } from '../../../store/game/middleware';
+import { selectRandomBird } from '../../../store/game/actionCreators';
 import { Spinner, Audio } from '../../index';
 
 const QuestionCard = styled(Card)`

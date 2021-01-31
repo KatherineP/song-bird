@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledButton } from '../../styled';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { onNextLevel } from '../../../actions/actions';
+import { onNextLevel } from '../../../store/game/actionCreators';
 
 const PlayButton = styled(StyledButton)`
   width: 100%;

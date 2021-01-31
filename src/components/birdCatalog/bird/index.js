@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListItem } from '../../styled';
 import styled from 'styled-components';
-import { selectBirdFromCatalog } from '../../../actions/actions';
+import { selectBirdFromCatalog } from '../../../store/birdCatalog/actionCreators';
 import { useDispatch } from 'react-redux';
 
 const StyledListItem = styled(ListItem)`

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StyledButton, Text, ContainerPopUp, PopUp } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { onPlayAgain } from '../../../actions/actions';
+import { onPlayAgain } from '../../../store/game/actionCreators';
 import { Link } from 'react-router-dom';
 
 const Title = styled(Text)`

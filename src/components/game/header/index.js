@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { MenuWrapper, Navigation, FlexWrapper } from '../../styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadBirdCategories } from '../../../actions/actions';
+import { loadBirdCategories } from '../../../store/game/middleware';
 import { Spinner } from '../../index';
 
 const Score = styled.h5`
