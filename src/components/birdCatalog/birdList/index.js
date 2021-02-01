@@ -10,7 +10,7 @@ const StyledList = styled(List)`
   overflow-y: scroll;
 `;
 
-const BirdList = () => {
+const BirdList = ({ history, match }) => {
   const birds = useSelector((state) => state.birdCatalog.birds);
   const dispatch = useDispatch();
   const hasBirds = !!birds.length;
@@ -22,10 +22,10 @@ const BirdList = () => {
   if (hasBirds) {
     return (
       <StyledList>
-        {birds.map((category) => {
-          return category.map((bird) => {
-            return <Bird key={bird.id} bird={bird} />;
-          });
+        {birds.map((bird) => {
+          return (
+            <Bird key={bird} birdName={bird} history={history} match={match} />
+          );
         })}
       </StyledList>
     );

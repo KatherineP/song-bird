@@ -1,4 +1,4 @@
-import { LOAD_ALL_BIRDS, SELECT_BIRD_FROM_CATALOG } from './types';
+import { LOAD_ALL_BIRDS, LOAD_SELECTED_BIRD_FROM_CATALOG } from './types';
 
 const initStateBirdCatalog = {
   birds: [],
@@ -9,7 +9,7 @@ export function birdCatalogReducer(state = initStateBirdCatalog, action) {
   switch (action.type) {
     case LOAD_ALL_BIRDS:
       return { ...state, birds: action.birds };
-    case SELECT_BIRD_FROM_CATALOG:
+    case LOAD_SELECTED_BIRD_FROM_CATALOG:
       return { ...state, selectedBird: action.selectedBird };
     default:
       return state;

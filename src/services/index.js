@@ -432,18 +432,32 @@ export default class BirdsService {
     );
   }
 
-  async getBirds() {
-    await delay(0);
-    return birdsData.map((bird) => {
-      return bird.birds;
-    });
-  }
-
   async getBirdsFromCategory(category) {
     await delay(1000);
     const birdCategory = birdsData.filter(
       (bird) => bird.category === category
     )[0];
     return birdCategory.birds;
+  }
+
+  async getBirds() {
+    await delay(0);
+    return birdsData.map((category) => {
+      return category.birds.map((bird) => {
+        return bird.name;
+      });
+    });
+  }
+
+  async getSelectedBird(birdName) {
+    let result;
+    await delay(0);
+    birdsData.forEach(
+      (category) =>
+        (result =
+          result ||
+          category.birds.find(({ name }) => name.toLowerCase() === birdName))
+    );
+    return result;
   }
 }

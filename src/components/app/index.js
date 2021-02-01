@@ -3,14 +3,15 @@ import React from 'react';
 import Game from '../../pages/gamePage';
 import BirdCatalog from '../../pages/birdsCatalog';
 import HomePage from '../../pages/homePage';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 const App = () => {
   return (
     <Switch>
       <Route path="/" component={HomePage} exact />
-      <Route path="/birdCatalog" component={BirdCatalog} />
+      <Route path="/birdCatalog/:name?" component={BirdCatalog} />
       <Route path="/game" component={Game} />
+      <Redirect to={'/'} />
     </Switch>
   );
 };
